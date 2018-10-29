@@ -19,4 +19,9 @@ public class CoinNode {
         return coinNodes;
     }
 
+    public CoinNode(Integer coin)
+    {
+        this.coin=coin;
+    }
+
 }
