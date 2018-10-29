@@ -24,4 +24,8 @@ public class CoinNode {
         this.coin=coin;
     }
 
+    @Override
+    public String toString() {
+        return coin.toString();
+    }
 }
