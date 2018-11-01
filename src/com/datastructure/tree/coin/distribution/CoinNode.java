@@ -5,13 +5,22 @@ import java.util.List;
 
 public class CoinNode {
     private List<CoinNode> coinNodes = new ArrayList<>();
-    private Integer coin;
+    private int coin;
+    private CoinNode parentNode;
 
-    public Integer getCoin() {
+    public CoinNode getParentNode() {
+        return parentNode;
+    }
+
+    public void setParentNode(CoinNode parentNode) {
+        this.parentNode = parentNode;
+    }
+
+    public int getCoin() {
         return coin;
     }
 
-    public void setCoin(Integer coin) {
+    public void setCoin(int coin) {
         this.coin = coin;
     }
 
@@ -19,13 +28,14 @@ public class CoinNode {
         return coinNodes;
     }
 
-    public CoinNode(Integer coin)
+    public CoinNode(int coin,CoinNode parentNode)
     {
         this.coin=coin;
+        this.parentNode  = parentNode;
     }
 
     @Override
     public String toString() {
-        return coin.toString();
+        return (new Integer(coin)).toString();
     }
 }

@@ -12,14 +12,16 @@ public class CoinDistribution {
         CoinDistribution coinDistribution = new CoinDistribution();
         coinDistribution.createTree();
         coinDistribution.printTree();
+        coinDistribution.distributeCoin(coinDistribution.rootNode);
+        coinDistribution.printTree();
     }
 
     private void createTree() {
-        CoinNode node1 = new CoinNode(1);
-        CoinNode node11 = new CoinNode(0);
-        CoinNode node12 = new CoinNode(1);
-        CoinNode node13 = new CoinNode(0);
-        CoinNode node21 = new CoinNode(3);
+        CoinNode node1 = new CoinNode(1,null);
+        CoinNode node11 = new CoinNode(0,node1);
+        CoinNode node12 = new CoinNode(1,node1);
+        CoinNode node13 = new CoinNode(0,node1);
+        CoinNode node21 = new CoinNode(3,node11);
 //        CoinNode node22 = new CoinNode(1);
 //        CoinNode node31 = new CoinNode(1);
         node1.getCoinNodes().add(node11);
@@ -34,6 +36,7 @@ public class CoinDistribution {
     private void printTree() {
         System.out.println(rootNode);
         printTree(rootNode.getCoinNodes());
+
     }
 
     private void printTree(List<CoinNode> coinNodes) {
@@ -54,7 +57,41 @@ public class CoinDistribution {
 
     }
 
-    private void distributeCoin() {
+    private void distributeCoin(CoinNode node) {
+
+//        if( node.getCoin()!=1)
+//        {
+//            if(null != node.getParentNode() && node.getParentNode().getCoin() <1)
+//            {
+//                // give it to parent
+//                node.getParentNode().setCoin(1);
+//                node.setCoin(node.getCoin() -1);
+//            }
+//            else
+//            {
+//                // distribute to child
+//                    if(null != node.getCoinNodes() && !node.getCoinNodes().isEmpty()) {
+//                        for (CoinNode node1 : node.getCoinNodes()) {
+//                            distributeCoin(node1);
+//                            node1.setCoin(node1.getCoin() + 1);
+//                            node.setCoin(node.getCoin() - 1);
+//                        }
+//                    }
+//                    else
+//                    {
+//                        //steal from parent
+//
+//                    }
+//
+//            }
+//        }
+//        else
+//        {
+//            for(CoinNode node1 : node.getCoinNodes())
+//            {
+//                distributeCoin(node1);
+//            }
+//        }
 
     }
 }
