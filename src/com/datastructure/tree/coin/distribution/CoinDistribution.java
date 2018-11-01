@@ -55,6 +55,6 @@ public class CoinDistribution {
     }
 
     private void distributeCoin() {
-        System.out.println("test");
+
     }
 }
