@@ -12,16 +12,35 @@ public class CoinDistribution {
         CoinDistribution coinDistribution = new CoinDistribution();
         coinDistribution.createTree();
         coinDistribution.printTree();
-        coinDistribution.distributeCoin(coinDistribution.rootNode);
+//        coinDistribution.distributeCoin(coinDistribution.rootNode);
+        coinDistribution.fetchCoin(coinDistribution.rootNode);
         coinDistribution.printTree();
     }
 
     private void createTree() {
-        CoinNode node1 = new CoinNode(1,null);
-        CoinNode node11 = new CoinNode(0,node1);
-        CoinNode node12 = new CoinNode(1,node1);
-        CoinNode node13 = new CoinNode(0,node1);
-        CoinNode node21 = new CoinNode(3,node11);
+        CoinNode node1 = new CoinNode(1, null);
+        CoinNode node11 = new CoinNode(0, node1);
+        CoinNode node12 = new CoinNode(1, node1);
+        CoinNode node13 = new CoinNode(0, node1);
+        CoinNode node21 = new CoinNode(3, node11);
+//        CoinNode node22 = new CoinNode(1);
+//        CoinNode node31 = new CoinNode(1);
+        node1.getCoinNodes().add(node11);
+        node1.getCoinNodes().add(node12);
+        node1.getCoinNodes().add(node13);
+        node11.getCoinNodes().add(node21);
+//        node11.getCoinNodes().add(node22);
+//        node21.getCoinNodes().add(node31);
+        rootNode = node1;
+    }
+
+
+    private void createTree2() {
+        CoinNode node1 = new CoinNode(1, null);
+        CoinNode node11 = new CoinNode(0, node1);
+        CoinNode node12 = new CoinNode(1, node1);
+        CoinNode node13 = new CoinNode(3, node1);
+        CoinNode node21 = new CoinNode(0, node11);
 //        CoinNode node22 = new CoinNode(1);
 //        CoinNode node31 = new CoinNode(1);
         node1.getCoinNodes().add(node11);
@@ -90,6 +109,61 @@ public class CoinDistribution {
         } else {
             for (CoinNode node1 : node.getCoinNodes()) {
                 distributeCoin(node1);
+            }
+        }
+
+    }
+
+    private void fetchCoin(CoinNode node) {
+        System.out.println("-----");
+        printTree();
+        System.out.println("-----");
+        if (node.getCoin() == 0) {
+            if (node.getParentNode() != null && node.getParentNode().getCoin() > 0) {
+                //fetch it from parent
+                node.setCoin(node.getCoin() + 1);
+                node.getParentNode().setCoin(node.getParentNode().getCoin() - 1);
+                fetchCoin(node.getParentNode());
+
+            } else {
+                //fetch if from child
+                for (CoinNode node1 : node.getCoinNodes()) {
+                    if (node1.getCoin() > 0) {
+                        node1.setCoin(node1.getCoin() - 1);
+                        node.setCoin(node.getCoin() + 1);
+                        if (node.getParentNode() != null) {
+                            fetchCoin(node.getParentNode());
+                        }
+                    }
+                }
+
+            }
+        } else if (node.getCoin() > 1) {
+//            if (node.getCoinNodes() == null || node.getCoinNodes().isEmpty()) {
+            // give it to parent
+            if (node.getParentNode() != null) {
+                node.getParentNode().setCoin(node.getParentNode().getCoin() + 1);
+                node.setCoin(node.getCoin() - 1);
+                fetchCoin(node.getParentNode());
+            }
+//            }
+            else {
+                //distribute to child
+
+                for (CoinNode coinNode : node.getCoinNodes()) {
+                    if (coinNode.getCoin() < 1) {
+
+                        coinNode.setCoin(coinNode.getCoin() + 1);
+                        node.setCoin(node.getCoin() - 1);
+                        fetchCoin(node);
+                    }
+                }
+
+
+            }
+        } else {
+            for (CoinNode node1 : node.getCoinNodes()) {
+                fetchCoin(node1);
             }
         }
 
