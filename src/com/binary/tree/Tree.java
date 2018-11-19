@@ -10,10 +10,10 @@ public class Tree {
     {
         dataElements = new int[numberOfElements];
     }
-
-    public Tree(Integer numberOfElements) {
-        this.numberOfElements = numberOfElements;
-    }
+//
+//    public Tree(Integer numberOfElements) {
+//        this.numberOfElements = numberOfElements;
+//    }
 
     public Node getRootNode() {
         return rootNode;
@@ -24,15 +24,26 @@ public class Tree {
     }
 
     public void insert(Integer data) {
+        index++;
         if (rootNode == null) {
             Node node = new Node(data);
             rootNode = node;
         } else {
             insertInto(rootNode, data);
         }
+
     }
 
+//    private int reversOrder(int index)
+//    {
+//        if(index == 2 || index==3)
+//            return index;
+//        System.out.println(index/2);
+//        return reversOrder(index/2);
+//    }
+
     private void insertInto(Node node, Integer data) {
+
         if (node.getLeftNode() == null) {
             node.setLeftNode(new Node(data));
         } else if (node.getRightNode() == null) {
@@ -40,7 +51,6 @@ public class Tree {
         } else {
             insertInto(node.getLeftNode(), data);
         }
-        index++;
     }
 
     public void printInOrder(Node rootNode) {
