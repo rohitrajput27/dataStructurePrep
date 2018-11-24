@@ -3,7 +3,7 @@ package com.binary.tree;
 public class TreeTest {
 
     public static void main(String[] args) {
-//        Tree tree = new Tree();
+        Tree tree = new Tree();
 //
 //        tree.insert(1);
 //        tree.insert(2);
