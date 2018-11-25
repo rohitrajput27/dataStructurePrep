@@ -4,32 +4,37 @@ public class QueueTest {
 
     public static void main(String[] args) {
         Queue<String> queue = new Queue<>();
+        System.out.println("Size: " + queue.getSize());
 
-        System.out.println(queue.pop());
-        queue.add(new QueueNode<String>("Rohit"));
-        queue.add(new QueueNode<String>("Shweta"));
-        queue.add(new QueueNode<String>("Aaru"));
-        queue.add(new QueueNode<String>("priya"));
-        queue.add(new QueueNode<String>("gaurav"));
-        queue.add(new QueueNode<String>("vishu"));
-        queue.add(new QueueNode<String>("shalini"));
+        System.out.println(queue.dequeue());
+        queue.enqueue("Rohit");
+        queue.enqueue("Shweta");
+        queue.enqueue("Aaru");
+        queue.enqueue("priya");
+        queue.enqueue("gaurav");
+        queue.enqueue("vishu");
+        queue.enqueue("shalini");
+        System.out.println("Size: " + queue.getSize());
 
         printQueue(queue);
         System.out.println("-----");
-        System.out.println(queue.pop());
+        System.out.println(queue.dequeue());
         System.out.println("-----");
+        System.out.println("Size: " + queue.getSize());
         printQueue(queue);
         System.out.println("-----");
-        System.out.println(queue.pop());
-        System.out.println(queue.pop());
-        System.out.println(queue.pop());
+        System.out.println(queue.dequeue());
+        System.out.println(queue.dequeue());
+        System.out.println(queue.dequeue());
         System.out.println("-----");
+        System.out.println("Size: " + queue.getSize());
         printQueue(queue);
         System.out.println("-----");
-        System.out.println(queue.pop());
-        System.out.println(queue.pop());
-        System.out.println(queue.pop());
+        System.out.println(queue.dequeue());
+        System.out.println(queue.dequeue());
+        System.out.println(queue.dequeue());
         System.out.println("-----");
+        System.out.println("Size: " + queue.getSize());
         printQueue(queue);
     }
 

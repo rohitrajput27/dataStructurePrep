@@ -4,27 +4,34 @@ public class Queue<T> {
 
     private QueueNode<T> firstNode;
     private QueueNode<T> lastNode;
+    private int count = 0;
 
-    public void add(QueueNode<T> node) {
+    public void enqueue(T data) {
+        QueueNode<T> temp = new QueueNode<>(data);
         if (null == firstNode) {
-            firstNode = node;
-            lastNode = node;
+            firstNode = temp;
+            lastNode = temp;
         } else {
-            lastNode.setNextElement(node);
-            lastNode = node;
+            lastNode.setNextElement(temp);
+            lastNode = temp;
         }
+        count++;
     }
 
-    public QueueNode<T> pop() {
+    public QueueNode<T> dequeue() {
         QueueNode<T> returnNode = null;
         if (null != firstNode) {
             returnNode = firstNode;
             firstNode = firstNode.getNextElement();
-
+            count--;
         }
+
         return returnNode;
     }
 
+    public int getSize() {
+        return count;
+    }
     public QueueNode<T> getFirstElement() {
         return firstNode;
     }
