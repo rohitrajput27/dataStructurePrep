@@ -1,6 +1,6 @@
 package com.linked.list;
 
-public class LinedList<T> {
+public class LinkedList<T> {
 
     private LNode<T> head;
     private LNode<T> tail;
