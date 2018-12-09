@@ -11,5 +11,17 @@ public class LinkedListTest {
         linkedList.addFirst("a");
         linkedList.printList();
         System.out.println("--------------");
+        linkedList.addAfter("c", "b");
+        linkedList.addAfter("d", "c");
+        linkedList.addAfter("e", "d");
+        linkedList.addLast("g");
+        linkedList.addLast("h");
+        linkedList.addLast("i");
+        linkedList.addLast("j");
+        linkedList.printList();
+        System.out.println("--------------");
+
+        System.out.println("getting middle");
+        System.out.println(linkedList.findMiddle());
     }
 }

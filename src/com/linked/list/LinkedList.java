@@ -27,7 +27,8 @@ public class LinkedList<T> {
 
     public void addAfter(T data, T after) {
         if (null == after) {
-            throw new RuntimeException("Given node can not be null");
+            System.out.println("after node can not be null");
+            return;
         }
 
         LNode newNode = new LNode(data);
@@ -35,9 +36,21 @@ public class LinkedList<T> {
 //        node.setNext(newNode);
 //        newNode.setNext(temp);
         LNode temp = head;
+        LNode afterNode = null;
         while (temp != null) {
-            System.out.println(temp.getData());
+            if (temp.getData().equals(after)) {
+                afterNode = temp;
+                break;
+            }
             temp = temp.getNext();
+        }
+
+        if (afterNode == null) {
+            System.out.println("node not found with: " + after);
+        } else {
+            temp = afterNode.getNext();
+            newNode.setNext(temp);
+            afterNode.setNext(newNode);
         }
     }
 
@@ -48,5 +61,21 @@ public class LinkedList<T> {
             temp = temp.getNext();
         }
     }
+
+    public T findMiddle() {
+        LNode<T> fist = head;
+        LNode<T> second = head;
+        while (true) {
+
+            if (second != null && second.getNext() != null) {
+                second = second.getNext().getNext();
+            } else {
+                break;
+            }
+            fist = fist.getNext();
+        }
+        return fist.getData();
+    }
+
 
 }
