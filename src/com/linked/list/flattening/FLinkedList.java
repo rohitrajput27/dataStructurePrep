@@ -56,7 +56,35 @@ public class FLinkedList<T> {
         FNode<Integer> node45 = new FNode<>(45);
         node40.setDown(node45);
 
+        print(node5);
+    }
 
+    public static void print(FNode headNode) {
+        FNode temp = headNode;
+        while (temp != null) {
+            System.out.print(temp + "-->");
+            temp = temp.getRight();
+        }
+
+        temp = headNode;
+        while (temp != null) {
+            if (temp.getDown() != null) {
+                System.out.println();
+                System.out.println("-------");
+                printDown(temp);
+                temp = temp.getRight();
+            }
+        }
+    }
+
+    public static void printDown(FNode headNode) {
+        FNode temp = headNode;
+        while (temp != null) {
+            System.out.println(temp);
+            System.out.println("|");
+            System.out.println("\\/");
+            temp = temp.getDown();
+        }
     }
 
 }
